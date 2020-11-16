@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpleadosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ Route::get('/', function () {
 Route::get('/home', function(){
     return view('bienvenida');
 });
+Route::middleware(['auth:sanctum', 'verified'])->get('/mi_dashboard', function () {
+    return view('inicioDashboard');
+})->name('dashboard2');
+
+Route::resource('empleados', EmpleadosController::class)->middleware(['auth:sanctum']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

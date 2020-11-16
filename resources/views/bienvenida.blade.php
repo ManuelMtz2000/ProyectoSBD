@@ -9,6 +9,7 @@
     <title>Bienvenid@! - Vidrieria Ruvalcaba</title>
   </head>
   <body id=inicio>
+    <!--Barra de navegación-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-light sticky-top">
         <div class="collapse navbar-collapse" id="">
           <ul class="navbar-nav mr-auto">
@@ -22,9 +23,20 @@
               <a class="nav-link text-info" href="#contacto">Contacto</a>
             </li>
           </ul>
-          <a class="text-muted text-info" href="{{ route('login') }}" >Inicia sesión</a>
+          <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="text-sm text-info-700 underline">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="text-sm text-info-700 underline">Inicia sesión</a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-info-700 underline">Registrar</a>
+                @endif
+            @endif
+        </div>
         </div>
       </nav>
+      <!--Cabezera principal-->
       <header class="masthead text-white text-center">
         <div class="overlay"></div>
         <div class="container">
@@ -39,6 +51,7 @@
           </div>
         </div>
       </header>
+      <!--Sección de características-->
       <section class="projects-section mt-5" id=caracteristicas>
         <div class="container">
           <h1 class="display-4">Características</h1>
@@ -67,6 +80,7 @@
           </div>
           <img src="{{ asset('img/Logo.png')}}" alt="Logo Vidrieria Ruvalcaba" class="img-fluid mx-auto d-block">
         </div>
+      <!--Sección de contacto-->
       </section>
       <section class="contact-section bg-dark" id="contacto">
         <div class="container">
@@ -87,6 +101,7 @@
           </div>
         </div>
       </section>
+      <!--Pie de pagina-->
       <footer class="footer bg-dark text-center text-white-50">
         <div class="container">Copyright © by Manuel Martínez 2020</div>
       </footer>
