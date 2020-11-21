@@ -25,7 +25,7 @@ class EmpleadosController extends Controller
      */
     public function create()
     {
-        //
+        return view('/empleados/formEmpleados');
     }
 
     /**
@@ -36,7 +36,15 @@ class EmpleadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombreEmpleado' => 'required|string|max:35',
+            'telefonoEmpleado' => 'required|string|max:10',
+            'direccionEmpleado' => 'required|string|max:30',
+            'fechaAltaEmpleado' => 'required',
+            'statusEmpleado' => 'required',
+        ]);
+        Empleado::create($request->all());
+        return redirect('/empleados');
     }
 
     /**
@@ -47,7 +55,7 @@ class EmpleadosController extends Controller
      */
     public function show(Empleado $empleado)
     {
-        //
+        return view('/empleados/showEmpleados', compact('empleado'));
     }
 
     /**
@@ -58,7 +66,7 @@ class EmpleadosController extends Controller
      */
     public function edit(Empleado $empleado)
     {
-        //
+        return view('/empleados/formEmpleados', compact('empleado'));
     }
 
     /**
@@ -70,7 +78,15 @@ class EmpleadosController extends Controller
      */
     public function update(Request $request, Empleado $empleado)
     {
-        //
+        $request->validate([
+            'nombreEmpleado' => 'required|string|max:35',
+            'telefonoEmpleado' => 'required|string|max:10',
+            'direccionEmpleado' => 'required|string|max:30',
+            'fechaAltaEmpleado' => 'required',
+            'statusEmpleado' => 'required',
+        ]);
+        Empleado::where('id',$empleado->id)->update($request->except('_method','_token'));
+        return redirect()->route('empleados.index');
     }
 
     /**
@@ -81,6 +97,7 @@ class EmpleadosController extends Controller
      */
     public function destroy(Empleado $empleado)
     {
-        //
+        $empleado->delete();
+        return redirect()->route('empleados.index');
     }
 }
