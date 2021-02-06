@@ -14,7 +14,8 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
+        $proveedor = Proveedor::get();
+        return view('/proveedores/indexProveedores',compact('proveedores'));
     }
 
     /**

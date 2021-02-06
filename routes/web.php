@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadosController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\ProveedorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/mi_dashboard', function (
 })->name('dashboard2');
 
 Route::resource('empleados', EmpleadosController::class)->middleware(['auth:sanctum']);
+
+Route::resource('productos', ProductosController::class)->middleware(['auth:sanctum']);
+
+Route::resource('proveedor', ProveedorController::class)->middleware(['auth:sanctum']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

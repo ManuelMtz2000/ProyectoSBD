@@ -21,6 +21,7 @@ class CreateEmpleadosTable extends Migration
             $table->date("fechaAltaEmpleado");
             $table->string("statusEmpleado",7);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
